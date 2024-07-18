@@ -1,0 +1,7 @@
+pandas
+numpy
+scikit-learn #==1.0.2
+scipy
+torch==2.0.0
+torchvision==0.15.1
+matplotlib
