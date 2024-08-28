@@ -89,7 +89,8 @@ Low_Level_Statistics = [
 ## Size in [pixels x pixels] of every stimulus
 ImgSize = 900
 
-## Cut-off frequency (visually found) between the low and high spatial frequencies
+## Cut-off frequency between the low and high spatial frequencies in cycles per image 
+## (corresponding to a demi cycle matching the average object size)
 ## for the photorealistic stimuli ('') and their binary mask counterparts ('_Mask')
 cutoff_frequency = {
     "": {"subitizing": 4, "estimation": 8},
