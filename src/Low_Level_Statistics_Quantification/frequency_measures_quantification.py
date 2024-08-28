@@ -109,7 +109,7 @@ for PS_range in PS_Ranges:
 
                             np.save(result_path, rotAvg)
 
-# %% Finding Visually the Cut-Off Frequency between the Low and High Spatial frequencies for our Stimuli i.e. Difference between Energy Spectrum N=1 (resp. N=6) & N=4 (resp. N=24)
+# %% Checking Visually the Cut-Off Frequency between the Low and High Spatial frequencies for our Stimuli i.e. Difference between Energy Spectrum N=1 (resp. N=6) & N=4 (resp. N=24)
 Numerosity_Range = {"subitizing": [1, 4], "estimation": [6, 24]}
 
 for PS_range in PS_Ranges:
@@ -256,8 +256,7 @@ for PS_range in PS_Ranges:
     )
     plt.legend()
 
-## Remark : We found that the cut-off frequency between the low and high SF was :
-## This cut-off frequency is hardcoded in the args.py file and is used in the next sections
+## NOTE: the cut-off frequency is hardcoded in the args.py file and is used in the next sections
 ## to compute the total energy in low or high spatial frequencies.
 
 # %% Re-saving Low/High SF Energy in a Memory Efficient Way (as Aggregate Fourier Magnitude)
@@ -335,7 +334,7 @@ for PS_range in PS_Ranges:
     #                 os.system(f'rm {old_path}')
 
 
-# %% Use Ben Harvey's like Frequency Statistics i.e. Aggregate (over 1st Harmonic & Orientation) Fourier Magnitude
+# %% Computing surrogate of the Aggregate Fourier Magnitude within first harmonic (Paul et al., 2022)
 def rotational_aggregate_magnitude_spectrum(If):
     """
     Fct that computes the rotational aggregate magnitude spectrum from a 2D fft
