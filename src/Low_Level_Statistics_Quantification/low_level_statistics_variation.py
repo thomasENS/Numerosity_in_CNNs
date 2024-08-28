@@ -377,7 +377,7 @@ for PS_range in PS_Ranges:
         np.array(Difference_rAVG_by_N_high_SF),
     )
 
-# %% Compute Influence of Harvey-like measure on our PhotoRealistic Dataset
+# %% Compute Influence of Aggregate Fourier Magnitude measure on our PhotoRealistic Dataset
 for PS_range in PS_Ranges:
 
     uDir = os.path.join(fDir, f"PS_{PS_range[0].upper() + PS_range[1:]}_Range")
