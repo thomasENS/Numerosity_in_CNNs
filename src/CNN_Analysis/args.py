@@ -132,10 +132,10 @@ Low_Level_Statistics = [
     "Dist_Complexity",
 ]
 
-## Definition of the numerosities covered by the dot-arrays stimuli
-Nasr_Numerosity = [1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30]
+## Definition of the numerosities covered by the dot-array stimuli
+Dot_Numerosity = [1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30]
 
-## Dimension of the features representation for AlexNet/Conv5
+## Dimension of the feature representations for AlexNet/Conv5
 nFeatures = 43264
 
 ## Definition of the several fraction of the whole unit population
@@ -143,4 +143,4 @@ Percentages = np.array([0.0025, 0.005, 0.01, 0.02, 0.04, 0.08, 0.16, 0.32, 0.64,
 nPercentages = len(Percentages)
 
 ## Number of images per numerosity used to find the number-selective units with the two-way ANOVA
-nImg = 900  # reproducing Kim's Paper for nImg=50 (nImg=900 corresponds to ANOVA sample size of 100%)
+nImg = 900  # nImg=900 corresponds to ANOVA sample size of 100%
