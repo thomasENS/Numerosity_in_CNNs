@@ -73,7 +73,6 @@ Tools = [
     "Teapot",
     "Wheelbarrow",
 ]
-nObjects = len(Animals)
 Objects = Animals + Tools
 nObjects = len(Objects)
 
