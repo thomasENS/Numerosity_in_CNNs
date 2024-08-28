@@ -1,10 +1,10 @@
 # %% Imports & Constants
 import os
 import numpy as np
-from args import dDir, Nasr_Numerosity, nFeatures, Models, Layer, nImg
+from args import dDir, Dot_Numerosity, nFeatures, Models, Layer, nImg
 from utils import find_number_selective_features
 
-nNumerosity = len(Nasr_Numerosity)
+nNumerosity = len(Dot_Numerosity)
 
 fDir = os.path.join(dDir, "CNN_Representations", "Dot_Patterns_Dataset")
 sDir = os.path.join(dDir, "Decoding_Results", "Dot_Patterns_Dataset")
@@ -18,15 +18,15 @@ for Model in Models:
 
             standard_set_Path = os.path.join(
                 fDir,
-                f"{Model}_{Layer}_Standard_Set_N-{Nasr_Numerosity[n]}_Stim-{1 + i}.npy",
+                f"{Model}_{Layer}_Standard_Set_N-{Dot_Numerosity[n]}_Stim-{1 + i}.npy",
             )
             control_set1_Path = os.path.join(
                 fDir,
-                f"{Model}_{Layer}_Control-1_Set_N-{Nasr_Numerosity[n]}_Stim-{1 + i}.npy",
+                f"{Model}_{Layer}_Control-1_Set_N-{Dot_Numerosity[n]}_Stim-{1 + i}.npy",
             )
             control_set2_Path = os.path.join(
                 fDir,
-                f"{Model}_{Layer}_Control-2_Set_N-{Nasr_Numerosity[n]}_Stim-{1 + i}.npy",
+                f"{Model}_{Layer}_Control-2_Set_N-{Dot_Numerosity[n]}_Stim-{1 + i}.npy",
             )
 
             Features[n, 0, i, :] = np.load(standard_set_Path).copy()

@@ -2,7 +2,7 @@
 from sklearn.linear_model import RidgeCV
 import os
 import numpy as np
-from utils import _read_parkspace_log, _load_labels, _compute_park_space_point
+from utils import _read_param_space_log, _load_labels, _compute_param_space_point
 from args import (
     mDir,
     dDir,
@@ -23,7 +23,7 @@ nLayers = len(Layers)
 
 clf = RidgeCV(alphas=Alphas)
 
-# Controlled Park Space Description for Congruent / Incongruent Non-Numerical Parameters (N, Sp, SzA)
+# Controlled Parametric Sapce Description for Congruent / Incongruent Non-Numerical Parameters (N, Sp, SzA)
 Yellow_Set = {
     "estimation": [(6, 11.3, 8.3), (10, 11.1, 8.5), (15, 11.0, 8.7), (24, 10.7, 8.9)],
     "subitizing": [(1, 12.1, 9.1), (2, 12.0, 9.4), (3, 11.8, 9.5), (4, 11.5, 9.7)],
@@ -87,16 +87,16 @@ def _load_controlled_non_numerical_parameters_stimuli_dataset(
     ], "Network layers are ConvX with X in {1 ... 5}"
 
     PS_path = os.path.join(mDir, "src", "Stimulus_Creation", f"PS_{ps_range}_range.csv")
-    ParkSpace_Description = _read_parkspace_log(PS_path)
+    Param_Space_Description = _read_param_space_log(PS_path)
     Backgrounds, Objects = SubSpace[load_space_idx]
 
     X, y = [], []
     for object_name in Objects:
         for bg_idx, bg_alpha in Backgrounds:
 
-            for N, ID, FD in ParkSpace_Description:
+            for N, ID, FD in Param_Space_Description:
 
-                Sp, SzA = _compute_park_space_point(N, ID, FD)
+                Sp, SzA = _compute_param_space_point(N, ID, FD)
                 if (N, Sp, SzA) in controlling_condition_set:
 
                     for v_idx in Versions:

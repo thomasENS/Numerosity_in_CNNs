@@ -4,7 +4,7 @@ import numpy as np
 import random as rd
 from scipy.spatial import ConvexHull
 from matplotlib.path import Path
-from args import mDir, ImgSize, Nasr_Numerosity, nImg
+from args import mDir, ImgSize, Dot_Numerosity, nImg
 
 sDir = os.path.join(mDir, "data", "Stimuli", "Dot_Patterns_Dataset")
 
@@ -26,7 +26,7 @@ def inpolygon(xq, yq, xv, yv):
     return polygon.contains_points(points)
 
 
-def stimulus_generation_nasr(number_sets, image_iter):
+def dot_stimulus_generation(number_sets, image_iter):
     """
     Fct that generates stimuli similar to the ones from [K. Nasr et al., Sci Adv 5, 2019]
     """
@@ -235,20 +235,20 @@ def stimulus_generation_nasr(number_sets, image_iter):
 
 # %% Generating images reproducing Nasr stimulus datasets
 image_sets_standard, image_sets_control1, image_sets_control2 = (
-    stimulus_generation_nasr(Nasr_Numerosity, nImg)
+    dot_stimulus_generation(Dot_Numerosity, nImg)
 )
 
 for i in range(nImg):
-    for n in range(len(Nasr_Numerosity)):
+    for n in range(len(Dot_Numerosity)):
         sPath = os.path.join(
-            sDir, f"Standard_Set_N-{Nasr_Numerosity[n]}_Stim-{1+ i}.npy"
+            sDir, f"Standard_Set_N-{Dot_Numerosity[n]}_Stim-{1+ i}.npy"
         )
         np.save(sPath, image_sets_standard[:, :, i, n])
         sPath = os.path.join(
-            sDir, f"Control-1_Set_N-{Nasr_Numerosity[n]}_Stim-{1+ i}.npy"
+            sDir, f"Control-1_Set_N-{Dot_Numerosity[n]}_Stim-{1+ i}.npy"
         )
         np.save(sPath, image_sets_control1[:, :, i, n])
         sPath = os.path.join(
-            sDir, f"Control-2_Set_N-{Nasr_Numerosity[n]}_Stim-{1+ i}.npy"
+            sDir, f"Control-2_Set_N-{Dot_Numerosity[n]}_Stim-{1+ i}.npy"
         )
         np.save(sPath, image_sets_control2[:, :, i, n])

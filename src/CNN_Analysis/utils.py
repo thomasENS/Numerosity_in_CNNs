@@ -21,30 +21,30 @@ def _read_log(log_path):
     return logs
 
 
-def _read_parkspace_log(PS_path):
+def _read_param_space_log(PS_path):
     """
-    Read a .csv file describing a ParkSpace and return the list of coordinates of each
+    Read a .csv file describing a paramspace and return the list of coordinates of each
     point in this space, formated as (N, ID, FD)
     """
 
     PS_Points = _read_log(PS_path)
 
-    ParkSpace_Description = []
+    ParamSpace_Description = []
     for point in PS_Points:
-        ParkSpace_Description.append(
+        ParamSpace_Description.append(
             (
                 int(point["numerosity"]),
                 int(point["item_diameter"]),
                 int(point["field_diameter"]),
             )
         )
-    return ParkSpace_Description
+    return ParamSpace_Description
 
 
 # %% Useful Methods for Preprocessing the Different Datasets to ImageNet Standards
-def nars_dataset_preprocessing(img_path):
+def dot_dataset_preprocessing(img_path):
     """
-    Load & Preprocess the Dot-pattern stimuli from Nars to abide by the ImageNet Standard Input.
+    Load & Preprocess the Dot-pattern stimuli to abide by the ImageNet Standard Input.
     """
     imageNet_Normalisation = transforms.Normalize(
         mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]
@@ -305,7 +305,7 @@ def _load_labels(N, ID, FD, modality, target_scale="Log"):
         return np.exp(y)
 
 
-def _compute_park_space_point(N, ID, FD):
+def _compute_param_space_point(N, ID, FD):
     """
     Conversion from the non-numerical parameters space (N, ID, FD) to the parametric space (N, Sp, SzA)
     """

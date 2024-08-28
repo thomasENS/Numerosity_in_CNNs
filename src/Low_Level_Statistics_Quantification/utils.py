@@ -35,28 +35,28 @@ def _read_log(log_path):
     return logs
 
 
-def _read_parkspace_log(PS_path):
+def _read_param_space_log(PS_path):
     """
-    Read a .csv file describing a ParkSpace and return the list of coordinates of each
+    Read a .csv file describing the Parametric Space and return the list of coordinates of each
     point in this space, formated as (N, ID, FD)
     """
 
     PS_Points = _read_log(PS_path)
 
-    ParkSpace_Description = []
+    Param_Space_Description = []
     for point in PS_Points:
-        ParkSpace_Description.append(
+        Param_Space_Description.append(
             (
                 int(point["numerosity"]),
                 int(point["item_diameter"]),
                 int(point["field_diameter"]),
             )
         )
-    return ParkSpace_Description
+    return Param_Space_Description
 
 
 # %% Useful Method to quantify the low-level statistics in our stimui
-def _compute_park_space_point(N, ID, FD):
+def _compute_param_space_point(N, ID, FD):
     """
     Conversion from the non-numerical parameters space (N, ID, FD) to the parametric space (N, Sp, SzA)
     """

@@ -2,9 +2,9 @@
 import os
 import numpy as np
 from utils import (
-    _read_parkspace_log,
+    _read_param_space_log,
     TorchHubFeatureExtractor,
-    nars_dataset_preprocessing,
+    dot_dataset_preprocessing,
     ImageNetStimuliPreProcessing,
     mask_dataset_preprocessing,
 )
@@ -20,7 +20,7 @@ from args import (
     Models,
     Layers,
     Model_Names,
-    Nasr_Numerosity,
+    Dot_Numerosity,
 )
 
 sDir = os.path.join(mDir, "data", "Stimuli")
@@ -51,11 +51,11 @@ for Model in Models:
             PS_path = os.path.join(
                 mDir, "src", "Stimulus_Creation", f"PS_{PS_range}_range.csv"
             )
-            ParkSpace_Description = _read_parkspace_log(PS_path)
+            Param_Space_Description = _read_param_space_log(PS_path)
 
             for object_name in Objects:
                 for bg_idx, bg_alpha in Backgrounds:
-                    for N, ID, FD in ParkSpace_Description:
+                    for N, ID, FD in Param_Space_Description:
                         for v_idx in Versions:
 
                             features_paths = [
@@ -126,11 +126,11 @@ for Model in Models:
             PS_path = os.path.join(
                 mDir, "src", "Stimulus_Creation", f"PS_{PS_range}_range.csv"
             )
-            ParkSpace_Description = _read_parkspace_log(PS_path)
+            Param_Space_Description = _read_param_space_log(PS_path)
 
             for object_name in Objects:
                 for bg_idx, bg_alpha in Backgrounds:
-                    for N, ID, FD in ParkSpace_Description:
+                    for N, ID, FD in Param_Space_Description:
                         for v_idx in Versions:
 
                             features_paths = [
@@ -201,11 +201,11 @@ for PS_range in PS_Ranges:
         PS_path = os.path.join(
             mDir, "src", "Stimulus_Creation", f"PS_{PS_range}_range.csv"
         )
-        ParkSpace_Description = _read_parkspace_log(PS_path)
+        Param_Space_Description = _read_param_space_log(PS_path)
 
         for object_name in Objects:
             for bg_idx, bg_alpha in Backgrounds:
-                for N, ID, FD in ParkSpace_Description:
+                for N, ID, FD in Param_Space_Description:
                     for v_idx in Versions:
 
                         img_pixels_path = os.path.join(

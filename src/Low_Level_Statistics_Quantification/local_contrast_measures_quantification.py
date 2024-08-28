@@ -4,7 +4,7 @@ import numpy as np
 import skimage.io as io
 from scipy.stats import weibull_min
 from scipy.ndimage import gaussian_gradient_magnitude
-from utils import _read_parkspace_log, _compute_park_space_point, mask
+from utils import _read_param_space_log, _compute_param_space_point, mask
 from args import (
     mDir,
     Backgrounds,
@@ -74,7 +74,7 @@ for PS_range in PS_Ranges:
     wDir = os.path.join(wDir, f"PS_{PS_range[0].upper() + PS_range[1:]}_Range")
 
     PS_path = os.path.join(mDir, "src", "Stimulus_Creation", f"PS_{PS_range}_range.csv")
-    ParkSpace_Description = _read_parkspace_log(PS_path)
+    Param_Space_Description = _read_param_space_log(PS_path)
 
     for object_name in Objects:
         for bg_idx, bg_alpha in Backgrounds:
@@ -100,9 +100,9 @@ for PS_range in PS_Ranges:
                     np.zeros((nPoints, nPoints, nPoints)),
                     np.zeros((nPoints, nPoints, nPoints)),
                 )
-                for N, ID, FD in ParkSpace_Description:
+                for N, ID, FD in Param_Space_Description:
 
-                    Sp, SzA = _compute_park_space_point(N, ID, FD)
+                    Sp, SzA = _compute_param_space_point(N, ID, FD)
                     idx_N, idx_Sp, idx_SzA = (
                         Numerosity[PS_range].index(N),
                         Spacing[PS_range].index(Sp),

@@ -2,7 +2,7 @@
 import numpy as np
 from sklearn.linear_model import RidgeCV
 import os
-from utils import _read_parkspace_log
+from utils import _read_param_space_log
 from args import (
     mDir,
     dDir,
@@ -73,7 +73,7 @@ def _load_stimuli_dataset(
         PS_path = os.path.join(
             mDir, "src", "Stimulus_Creation", f"PS_{ps_range}_range.csv"
         )
-        ParkSpace_Description = _read_parkspace_log(PS_path)
+        Param_Space_Description = _read_param_space_log(PS_path)
 
         for i in range(nObjects):
             for j in range(nBackgrounds):
@@ -83,7 +83,7 @@ def _load_stimuli_dataset(
                     object_name = Objects[i]
                     bg_idx, bg_alpha = Backgrounds[j]
 
-                    for N, ID, FD in ParkSpace_Description:
+                    for N, ID, FD in Param_Space_Description:
                         if N in numerosity:
                             if model != "RawPixels":
                                 features_path = os.path.join(

@@ -1,9 +1,9 @@
 # %% Imports & Constants
 import numpy as np
 import os
-from args import dDir, Nasr_Numerosity, nFeatures, Models, Layer, nImg
+from args import dDir, Dot_Numerosity, nFeatures, Models, Layer, nImg
 
-nNumerosity = len(Nasr_Numerosity)
+nNumerosity = len(Dot_Numerosity)
 
 fDir = os.path.join(dDir, "CNN_Representations", "Dot_Patterns_Dataset")
 sDir = os.path.join(dDir, "Decoding_Results", "Dot_Patterns_Dataset")
@@ -24,25 +24,25 @@ for Model in Models:
 
             standard_set_Path = os.path.join(
                 fDir,
-                f"{Model}_{Layer}_Standard_Set_N-{Nasr_Numerosity[n]}_Stim-{1 + i}.npy",
+                f"{Model}_{Layer}_Standard_Set_N-{Dot_Numerosity[n]}_Stim-{1 + i}.npy",
             )
             control_set1_Path = os.path.join(
                 fDir,
-                f"{Model}_{Layer}_Control-1_Set_N-{Nasr_Numerosity[n]}_Stim-{1 + i}.npy",
+                f"{Model}_{Layer}_Control-1_Set_N-{Dot_Numerosity[n]}_Stim-{1 + i}.npy",
             )
             control_set2_Path = os.path.join(
                 fDir,
-                f"{Model}_{Layer}_Control-2_Set_N-{Nasr_Numerosity[n]}_Stim-{1 + i}.npy",
+                f"{Model}_{Layer}_Control-2_Set_N-{Dot_Numerosity[n]}_Stim-{1 + i}.npy",
             )
 
             Features[n, 0, i, :] = np.load(standard_set_Path).copy()
             Features[n, 1, i, :] = np.load(control_set1_Path).copy()
             Features[n, 2, i, :] = np.load(control_set2_Path).copy()
 
-    Tuning_Curves = {N: np.zeros(nNumerosity) for N in Nasr_Numerosity}
+    Tuning_Curves = {N: np.zeros(nNumerosity) for N in Dot_Numerosity}
     n_Prefered_Numerosity = {}
 
-    Prefered_Numerosity, Averaged_Response = {N: [] for N in Nasr_Numerosity}, {
+    Prefered_Numerosity, Averaged_Response = {N: [] for N in Dot_Numerosity}, {
         idx: [] for idx in Number_Selective_Units_Idx
     }
 
@@ -58,11 +58,11 @@ for Model in Models:
             Averaged_Response[idx] = (
                 (avg_activations_by_numerosity - activity_min) / activity_max
             ).copy()
-            Prefered_Numerosity[Nasr_Numerosity[prefered_numerosity_idx]].append(idx)
+            Prefered_Numerosity[Dot_Numerosity[prefered_numerosity_idx]].append(idx)
 
     # Directly on the Nars Dataset Stimuli
-    n_Prefered_Numerosity = {N: len(Prefered_Numerosity[N]) for N in Nasr_Numerosity}
-    for N in Nasr_Numerosity:
+    n_Prefered_Numerosity = {N: len(Prefered_Numerosity[N]) for N in Dot_Numerosity}
+    for N in Dot_Numerosity:
         for idx in Prefered_Numerosity[N]:
             Tuning_Curves[N] += Averaged_Response[idx]
         if n_Prefered_Numerosity[N] > 0:
@@ -71,7 +71,7 @@ for Model in Models:
     # Saving the Tuning Curves as an array (to prevent their time consuming computation each time)
     tuned_curves = np.zeros((nNumerosity, nNumerosity))
     for i in range(nNumerosity):
-        tuned_curves[i] = Tuning_Curves[Nasr_Numerosity[i]].copy()
+        tuned_curves[i] = Tuning_Curves[Dot_Numerosity[i]].copy()
 
     np.save(
         os.path.join(

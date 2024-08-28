@@ -4,7 +4,7 @@ from numpy import fft
 import skimage.io as io
 import matplotlib.pyplot as plt
 import os
-from utils import _read_parkspace_log, mask, _avg_weibull_params
+from utils import _read_param_space_log, mask, _avg_weibull_params
 from args import mDir, PS_Ranges, Backgrounds, Objects, Versions, SegMask, Numerosity
 
 iDir = os.path.join(mDir, "data", "Stimuli", "Photorealistic_Dataset")
@@ -26,7 +26,7 @@ for ps_range in PS_Ranges:
     sDir = os.path.join(iDir, f"PS_{ps_range[0].upper() + ps_range[1:]}_Range")
 
     PS_path = os.path.join(mDir, "src", "Stimulus_Creation", f"PS_{ps_range}_range.csv")
-    ParkSpace_Description = _read_parkspace_log(PS_path)
+    Param_Space_Description = _read_param_space_log(PS_path)
 
     Mean_Lum, Std_Lum = np.zeros((nBackgrounds * nObjects)), np.zeros(
         (nBackgrounds * nObjects)
@@ -37,7 +37,7 @@ for ps_range in PS_Ranges:
             object_name = Objects[j]
 
             IgM_mean, IgM_std = [], []
-            for N, ID, FD in ParkSpace_Description:
+            for N, ID, FD in Param_Space_Description:
                 for v_idx in Versions:
 
                     base_path = os.path.join(
@@ -88,7 +88,7 @@ for ps_range in PS_Ranges:
     uDir = os.path.join(lDir, f"PS_{ps_range[0].upper() + ps_range[1:]}_Range")
     sDir = os.path.join(iDir, f"PS_{ps_range[0].upper() + ps_range[1:]}_Range")
     PS_path = os.path.join(mDir, "src", "Stimulus_Creation", f"PS_{ps_range}_range.csv")
-    ParkSpace_Description = _read_parkspace_log(PS_path)
+    Param_Space_Description = _read_param_space_log(PS_path)
 
     Mean_Lum = {
         (obj_name, f"bg-{bg_idx}_alpha{bg_alpha}"): {
@@ -110,7 +110,7 @@ for ps_range in PS_Ranges:
         for j in range(nObjects):
             object_name = Objects[j]
 
-            for N, ID, FD in ParkSpace_Description:
+            for N, ID, FD in Param_Space_Description:
                 if N in Numerosity_Range[ps_range]:
                     for v_idx in Versions:
 
@@ -208,7 +208,7 @@ for ps_range in PS_Ranges:
 for PS_range in PS_Ranges:
 
     PS_path = os.path.join(mDir, "src", "Stimulus_Creation", f"PS_{PS_range}_range.csv")
-    ParkSpace_Description = _read_parkspace_log(PS_path)
+    Param_Space_Description = _read_param_space_log(PS_path)
 
     uDir = os.path.join(fDir, f"PS_{PS_range[0].upper() + PS_range[1:]}_Range")
 
@@ -285,7 +285,7 @@ for PS_range in PS_Ranges:
 for PS_range in PS_Ranges:
 
     PS_path = os.path.join(mDir, "src", "Stimulus_Creation", f"PS_{PS_range}_range.csv")
-    ParkSpace_Description = _read_parkspace_log(PS_path)
+    Param_Space_Description = _read_param_space_log(PS_path)
 
     uDir = os.path.join(fDir, f"PS_{PS_range[0].upper() + PS_range[1:]}_Range")
 

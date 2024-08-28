@@ -2,7 +2,7 @@
 import numpy as np
 import skimage.io as io
 import os
-from utils import _read_parkspace_log, _compute_park_space_point, mask
+from utils import _read_param_space_log, _compute_param_space_point, mask
 from args import (
     mDir,
     Backgrounds,
@@ -27,7 +27,7 @@ for ps_range in PS_Ranges:
     sDir = os.path.join(iDir, f"PS_{ps_range[0].upper() + ps_range[1:]}_Range")
 
     PS_path = os.path.join(mDir, "src", "Stimulus_Creation", f"PS_{ps_range}_range.csv")
-    ParkSpace_Description = _read_parkspace_log(PS_path)
+    Param_Space_Description = _read_param_space_log(PS_path)
 
     size_area, spacing, numerosity, nPoints = (
         Size_Area[ps_range],
@@ -52,9 +52,9 @@ for ps_range in PS_Ranges:
                 IgM_mean, IgM_std = np.zeros((nPoints, nPoints, nPoints)), np.zeros(
                     (nPoints, nPoints, nPoints)
                 )
-                for N, ID, FD in ParkSpace_Description:
+                for N, ID, FD in Param_Space_Description:
 
-                    Sp, SzA = _compute_park_space_point(N, ID, FD)
+                    Sp, SzA = _compute_param_space_point(N, ID, FD)
                     idx_N, idx_Sp, idx_SzA = (
                         numerosity.index(N),
                         spacing.index(Sp),

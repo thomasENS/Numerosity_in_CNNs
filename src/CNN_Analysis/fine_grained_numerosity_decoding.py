@@ -3,7 +3,7 @@ from sklearn.linear_model import RidgeCV
 import os
 import numpy as np
 from joblib import Parallel, delayed
-from utils import _read_parkspace_log, _load_labels
+from utils import _read_param_space_log, _load_labels
 from args import (
     mDir,
     dDir,
@@ -76,12 +76,12 @@ def _load_stimuli_object(
     ], "Network layers are ConvX with X in {1 ... 5}"
 
     PS_path = os.path.join(mDir, "src", "Stimulus_Creation", f"PS_{ps_range}_range.csv")
-    ParkSpace_Description = _read_parkspace_log(PS_path)
+    Param_Space_Description = _read_param_space_log(PS_path)
 
     X, y = [], []
     for bg_idx, bg_alpha in Backgrounds:
 
-        for N, ID, FD in ParkSpace_Description:
+        for N, ID, FD in Param_Space_Description:
             if model != "RawPixels":
                 features_path = os.path.join(
                     fDir,
@@ -146,7 +146,7 @@ def _load_stimuli_background(
     ], "Network layers are ConvX with X in {1 ... 5}"
 
     PS_path = os.path.join(mDir, "src", "Stimulus_Creation", f"PS_{ps_range}_range.csv")
-    ParkSpace_Description = _read_parkspace_log(PS_path)
+    Param_Space_Description = _read_param_space_log(PS_path)
 
     bg_idx, bg_alpha = (
         bg_name.split("_")[0].split("bg-")[1],
@@ -156,7 +156,7 @@ def _load_stimuli_background(
     X, y = [], []
     for object_name in Objects:
 
-        for N, ID, FD in ParkSpace_Description:
+        for N, ID, FD in Param_Space_Description:
             if model != "RawPixels":
                 features_path = os.path.join(
                     fDir,

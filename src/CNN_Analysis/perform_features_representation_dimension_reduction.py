@@ -2,7 +2,7 @@
 from sklearn.feature_selection import f_classif
 import os
 import numpy as np
-from utils import _read_parkspace_log, _load_labels
+from utils import _read_param_space_log, _load_labels
 from args import (
     mDir,
     dDir,
@@ -45,7 +45,7 @@ def _load_stimuli_features(model, layer, ps_range, load_space_idx, v_idx=1, _mas
     ], "Network layers are ConvX with X in {1 ... 5}"
 
     PS_path = os.path.join(mDir, "src", "Stimulus_Creation", f"PS_{ps_range}_range.csv")
-    ParkSpace_Description = _read_parkspace_log(PS_path)
+    Param_Space_Description = _read_param_space_log(PS_path)
     Backgrounds, Objects = SubSpace[load_space_idx]
 
     X = []
@@ -55,7 +55,7 @@ def _load_stimuli_features(model, layer, ps_range, load_space_idx, v_idx=1, _mas
             object_name = Objects[i]
             bg_idx, bg_alpha = Backgrounds[j]
 
-            for N, ID, FD in ParkSpace_Description:
+            for N, ID, FD in Param_Space_Description:
                 if model != "RawPixels":
                     features_path = os.path.join(
                         fDir,
@@ -97,7 +97,7 @@ def _load_stimuli_labels(
     ], "Network layers are ConvX with X in {1 ... 5}"
 
     PS_path = os.path.join(mDir, "src", "Stimulus_Creation", f"PS_{ps_range}_range.csv")
-    ParkSpace_Description = _read_parkspace_log(PS_path)
+    Param_Space_Description = _read_param_space_log(PS_path)
     Backgrounds, Objects = SubSpace[load_space_idx]
 
     y = []
@@ -107,7 +107,7 @@ def _load_stimuli_labels(
             object_name = Objects[i]
             bg_idx, bg_alpha = Backgrounds[j]
 
-            for N, ID, FD in ParkSpace_Description:
+            for N, ID, FD in Param_Space_Description:
                 if model != "RawPixels":
                     features_path = os.path.join(
                         fDir,
@@ -152,13 +152,13 @@ def _load_stimuli_object_dataset(
     ], "Network layers are ConvX with X in {1 ... 5}"
 
     PS_path = os.path.join(mDir, "src", "Stimulus_Creation", f"PS_{ps_range}_range.csv")
-    ParkSpace_Description = _read_parkspace_log(PS_path)
+    Param_Space_Description = _read_param_space_log(PS_path)
 
     X, y = [], []
     for bg_idx, bg_alpha in Naturals + Artificials:
 
         for v_idx in Versions:
-            for N, ID, FD in ParkSpace_Description:
+            for N, ID, FD in Param_Space_Description:
                 if model != "RawPixels":
                     features_path = os.path.join(
                         fDir,
@@ -204,7 +204,7 @@ def _load_stimuli_background_dataset(
     ], "Network layers are ConvX with X in {1 ... 5}"
 
     PS_path = os.path.join(mDir, "src", "Stimulus_Creation", f"PS_{ps_range}_range.csv")
-    ParkSpace_Description = _read_parkspace_log(PS_path)
+    Param_Space_Description = _read_param_space_log(PS_path)
 
     bg_idx, bg_alpha = int(bg_name.split("bg-")[-1].split("_")[0]), int(
         bg_name.split("alpha")[-1]
@@ -214,7 +214,7 @@ def _load_stimuli_background_dataset(
     for object_name in Animals + Tools:
 
         for v_idx in Versions:
-            for N, ID, FD in ParkSpace_Description:
+            for N, ID, FD in Param_Space_Description:
                 if model != "RawPixels":
                     features_path = os.path.join(
                         fDir,

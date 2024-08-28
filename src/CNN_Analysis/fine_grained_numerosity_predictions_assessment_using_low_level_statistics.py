@@ -2,7 +2,7 @@
 from sklearn.linear_model import LinearRegression
 import os
 import numpy as np
-from utils import _read_parkspace_log, _compute_park_space_point
+from utils import _read_param_space_log, _compute_param_space_point
 from args import (
     mDir,
     dDir,
@@ -75,7 +75,7 @@ def _distance_to_axis_function(ps_range):
 
 
 def _load_features(
-    ParkSpace_Description,
+    Param_Space_Description,
     statistic,
     ps_range,
     object_name,
@@ -99,9 +99,9 @@ def _load_features(
         )
         Mean_Lum = np.load(result_path)
 
-        for N, ID, FD in ParkSpace_Description:
+        for N, ID, FD in Param_Space_Description:
 
-            Sp, SzA = _compute_park_space_point(N, ID, FD)
+            Sp, SzA = _compute_param_space_point(N, ID, FD)
             idx_N, idx_Sp, idx_SzA = (
                 Numerosity[ps_range].index(N),
                 Spacing[ps_range].index(Sp),
@@ -117,9 +117,9 @@ def _load_features(
         )
         Std_Lum = np.load(result_path)
 
-        for N, ID, FD in ParkSpace_Description:
+        for N, ID, FD in Param_Space_Description:
 
-            Sp, SzA = _compute_park_space_point(N, ID, FD)
+            Sp, SzA = _compute_param_space_point(N, ID, FD)
             idx_N, idx_Sp, idx_SzA = (
                 Numerosity[ps_range].index(N),
                 Spacing[ps_range].index(Sp),
@@ -136,9 +136,9 @@ def _load_features(
         )
         NRJ_Low_SF = np.load(result_path)
 
-        for N, ID, FD in ParkSpace_Description:
+        for N, ID, FD in Param_Space_Description:
 
-            Sp, SzA = _compute_park_space_point(N, ID, FD)
+            Sp, SzA = _compute_param_space_point(N, ID, FD)
             idx_N, idx_Sp, idx_SzA = (
                 Numerosity[ps_range].index(N),
                 Spacing[ps_range].index(Sp),
@@ -155,9 +155,9 @@ def _load_features(
         )
         NRJ_High_SF = np.load(result_path)
 
-        for N, ID, FD in ParkSpace_Description:
+        for N, ID, FD in Param_Space_Description:
 
-            Sp, SzA = _compute_park_space_point(N, ID, FD)
+            Sp, SzA = _compute_param_space_point(N, ID, FD)
             idx_N, idx_Sp, idx_SzA = (
                 Numerosity[ps_range].index(N),
                 Spacing[ps_range].index(Sp),
@@ -173,9 +173,9 @@ def _load_features(
             result_path + "_Beta.npy"
         )
 
-        for N, ID, FD in ParkSpace_Description:
+        for N, ID, FD in Param_Space_Description:
 
-            Sp, SzA = _compute_park_space_point(N, ID, FD)
+            Sp, SzA = _compute_param_space_point(N, ID, FD)
             idx_N, idx_Sp, idx_SzA = (
                 Numerosity[ps_range].index(N),
                 Spacing[ps_range].index(Sp),
@@ -192,9 +192,9 @@ def _load_features(
             result_path + "_Beta.npy"
         )
 
-        for N, ID, FD in ParkSpace_Description:
+        for N, ID, FD in Param_Space_Description:
 
-            Sp, SzA = _compute_park_space_point(N, ID, FD)
+            Sp, SzA = _compute_param_space_point(N, ID, FD)
             idx_N, idx_Sp, idx_SzA = (
                 Numerosity[ps_range].index(N),
                 Spacing[ps_range].index(Sp),
@@ -212,9 +212,9 @@ def _load_features(
         )
         Agg_Mag = np.load(result_path)
 
-        for N, ID, FD in ParkSpace_Description:
+        for N, ID, FD in Param_Space_Description:
 
-            Sp, SzA = _compute_park_space_point(N, ID, FD)
+            Sp, SzA = _compute_param_space_point(N, ID, FD)
             idx_N, idx_Sp, idx_SzA = (
                 Numerosity[ps_range].index(N),
                 Spacing[ps_range].index(Sp),
@@ -252,7 +252,7 @@ def _load_stimuli_statistics(
     ], "UseSegMask as '' for use of the PhotoRealistic Stimuli & as '_Mask' for associated Segmentation Masks"
 
     PS_path = os.path.join(mDir, "src", "Stimulus_Creation", f"PS_{ps_range}_range.csv")
-    ParkSpace_Description = _read_parkspace_log(PS_path)
+    Param_Space_Description = _read_param_space_log(PS_path)
 
     X = []
     for statistic in statistics:
@@ -263,7 +263,7 @@ def _load_stimuli_statistics(
             for bg_idx, bg_alpha in Backgrounds:
                 features.append(
                     _load_features(
-                        ParkSpace_Description,
+                        Param_Space_Description,
                         statistic,
                         ps_range,
                         object_name,
@@ -279,7 +279,7 @@ def _load_stimuli_statistics(
             for object_name in Objects:
                 features.append(
                     _load_features(
-                        ParkSpace_Description,
+                        Param_Space_Description,
                         statistic,
                         ps_range,
                         object_name,

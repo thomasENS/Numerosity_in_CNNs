@@ -10,8 +10,8 @@ dDir = os.path.join(mDir, "derivatives", "CNN_Analysis")
 Models = ["AlexNet", "Random_AlexNet"]
 Layer = "Conv5"
 
-## Definition of the numerosities covered by the Nasr stimuli
-Nasr_Numerosity = [1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30]
+## Definition of the numerosities covered by the Dot stimuli
+Dot_Numerosity = [1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30]
 
 ## Size of an Image Stimulus (ImgSize x ImgSize)
 ImgSize = 224

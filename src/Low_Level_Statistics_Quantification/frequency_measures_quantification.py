@@ -4,7 +4,7 @@ from numpy import fft
 import skimage.io as io
 import matplotlib.pyplot as plt
 import os
-from utils import _read_parkspace_log, _compute_park_space_point
+from utils import _read_param_space_log, _compute_param_space_point
 from args import (
     mDir,
     PS_Ranges,
@@ -61,7 +61,7 @@ def rotational_average_power_spectrum(If):
 for PS_range in PS_Ranges:
 
     PS_path = os.path.join(mDir, "src", "Stimulus_Creation", f"PS_{PS_range}_range.csv")
-    ParkSpace_Description = _read_parkspace_log(PS_path)
+    Param_Space_Description = _read_param_space_log(PS_path)
 
     sDir = os.path.join(fDir, f"PS_{PS_range[0].upper() + PS_range[1:]}_Range")
     sDir = (
@@ -72,7 +72,7 @@ for PS_range in PS_Ranges:
     for bg_idx, bg_alpha in Backgrounds:
         for object_name in Objects:
 
-            for N, ID, FD in ParkSpace_Description:
+            for N, ID, FD in Param_Space_Description:
                 for v_idx in Versions:
 
                     img_path = os.path.join(
@@ -115,7 +115,7 @@ Numerosity_Range = {"subitizing": [1, 4], "estimation": [6, 24]}
 for PS_range in PS_Ranges:
 
     PS_path = os.path.join(mDir, "src", "Stimulus_Creation", f"PS_{PS_range}_range.csv")
-    ParkSpace_Description = _read_parkspace_log(PS_path)
+    Param_Space_Description = _read_param_space_log(PS_path)
 
     uDir = os.path.join(rDir, f"PS_{PS_range[0].upper() + PS_range[1:]}_Range")
 
@@ -130,7 +130,7 @@ for PS_range in PS_Ranges:
     for bg_idx, bg_alpha in Backgrounds:
         for object_name in Objects:
 
-            for N, ID, FD in ParkSpace_Description:
+            for N, ID, FD in Param_Space_Description:
                 if N in Numerosity_Range[PS_range]:
                     for v_idx in Versions:
 
@@ -263,7 +263,7 @@ for PS_range in PS_Ranges:
 for PS_range in PS_Ranges:
 
     PS_path = os.path.join(mDir, "src", "Stimulus_Creation", f"PS_{PS_range}_range.csv")
-    ParkSpace_Description = _read_parkspace_log(PS_path)
+    Param_Space_Description = _read_param_space_log(PS_path)
 
     size_area, spacing, numerosity, nPoints = (
         Size_Area[PS_range],
@@ -293,11 +293,11 @@ for PS_range in PS_Ranges:
                         Energy_Low_SF, Energy_High_SF = np.zeros(
                             [nPoints, nPoints, nPoints]
                         ), np.zeros([nPoints, nPoints, nPoints])
-                        for N, ID, FD in ParkSpace_Description:
+                        for N, ID, FD in Param_Space_Description:
 
                             base_stimulus_path = f"{object_name}-{N}_ID-{ID}_FD-{FD}_bg-{bg_idx}_alpha{bg_alpha}_version-{v_idx}"
 
-                            Sp, SzA = _compute_park_space_point(N, ID, FD)
+                            Sp, SzA = _compute_param_space_point(N, ID, FD)
                             idx_N, idx_Sp, idx_SzA = (
                                 numerosity.index(N),
                                 spacing.index(Sp),
@@ -328,7 +328,7 @@ for PS_range in PS_Ranges:
     # for object_name in Objects:
     #     for bg_idx, bg_alpha in Backgrounds:
     #         for v_idx in Versions:
-    #             for N, ID, FD in ParkSpace_Description:
+    #             for N, ID, FD in Param_Space_Description:
 
     #                 old_path = uDir + f'rAvg_Fourier_Power{SegMask}_{object_name}-{N}_ID-{ID}_FD-{FD}_bg-{bg_idx}_alpha{bg_alpha}_version-{v_idx}.npy'
     #                 os.system(f'rm {old_path}')
@@ -361,9 +361,9 @@ def rotational_aggregate_magnitude_spectrum(If):
     return rAvg
 
 
-def _get_theoritical_first_harmonic(segmask_path):
+def _get_theoretical_first_harmonic(segmask_path):
     """
-    Fct that computes the equivalent theoritical first harmonic frequency of
+    Fct that computes the equivalent theoretical first harmonic frequency of
     a binarized stimulus, if all the white pixels (value equals 1) belonged to
     a set of equal-sized dots.
     """
@@ -377,7 +377,7 @@ def _get_theoritical_first_harmonic(segmask_path):
     nPixels = Stimulus_SegMask.sum()
     ## Equivalent Radius of the average size covered by all objects
     Re = np.sqrt(nPixels / (N * np.pi))
-    ## Theoritical first harmonic cut-off frequency for equivalent dot sets of radius Re (First order Bessel is FFT of dot)
+    ## Theoretical first harmonic cut-off frequency for equivalent dot sets of radius Re (First order Bessel is FFT of dot)
     f1 = np.round(1.22 * (ImgSize / 2) / Re).astype(int)
 
     ## Remark: # ImgSize/2 correspond to maximum frequency, therefore f1 is the idx of the cut-off frequency
@@ -389,7 +389,7 @@ def _get_theoritical_first_harmonic(segmask_path):
 for PS_range in PS_Ranges:
 
     PS_path = os.path.join(mDir, "src", "Stimulus_Creation", f"PS_{PS_range}_range.csv")
-    ParkSpace_Description = _read_parkspace_log(PS_path)
+    Param_Space_Description = _read_param_space_log(PS_path)
 
     size_area, spacing, numerosity, nPoints = (
         Size_Area[PS_range],
@@ -420,11 +420,11 @@ for PS_range in PS_Ranges:
                 if not os.path.isfile(agg_mag_path):
 
                     Agg_Fourier_Mag = np.zeros([nPoints, nPoints, nPoints])
-                    for N, ID, FD in ParkSpace_Description:
+                    for N, ID, FD in Param_Space_Description:
 
                         base_stimulus_path = f"{object_name}-{N}_ID-{ID}_FD-{FD}_bg-{bg_idx}_alpha{bg_alpha}_version-{v_idx}"
 
-                        Sp, SzA = _compute_park_space_point(N, ID, FD)
+                        Sp, SzA = _compute_param_space_point(N, ID, FD)
                         idx_N, idx_Sp, idx_SzA = (
                             numerosity.index(N),
                             spacing.index(Sp),
@@ -436,7 +436,7 @@ for PS_range in PS_Ranges:
                             segDir, base_stimulus_dir, base_stimulus_path + ".npy"
                         )
                         if os.path.isfile(segmask_path):
-                            f1 = _get_theoritical_first_harmonic(segmask_path)
+                            f1 = _get_theoretical_first_harmonic(segmask_path)
 
                             ## Computing the Rotational Fourier Magnitude Average
                             if SegMask == "":
