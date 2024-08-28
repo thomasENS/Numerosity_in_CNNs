@@ -24,10 +24,10 @@ wDir = os.path.join(
 sDir = os.path.join(mDir, "data", "Stimuli", "Photorealistic_Dataset")
 
 
-# %% Useful Methods to Estimate Weibull Parameters
+# %% Methods to Estimate Weibull Parameters
 def _estimate_weibull_params(img_path, sigma):
     """
-    Fct that MLE estimate of the weibull parameters (beta, gamma) of the given img
+    Fct that computes the MLE estimates of the weibull parameters (beta, gamma) for a given image
     """
 
     gamma_opt, beta_opt, area_error, bad_fit = 1, 0, 0, True
@@ -57,7 +57,7 @@ def _estimate_weibull_params(img_path, sigma):
             pass
 
     except Exception:
-        # Catches all the exceptions (dangerous behaviour can happen. Do not do that.)
+        # Catches all the exceptions
         pass
 
     if gamma_opt != 1:
