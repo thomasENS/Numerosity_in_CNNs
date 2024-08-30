@@ -3,7 +3,7 @@ import numpy as np
 from scipy.stats import f
 
 
-# %% Useful Methods to reproduce Nasr's artificial units selection
+# %% useful Methods to perform number-selective artificial units selection
 def anova2(data, alpha):
     """
     Performs a two-way ANOVA on the given 3D Numpy Array of shape (n_fA, n_fB, n_samples)
@@ -65,17 +65,20 @@ def anova2(data, alpha):
 
 def find_number_selective_features(features, alpha=0.01):
     """
-    Find the Number Selective Features following Nieder Approach upon Nars Dataset of Dot-Patterns Stimuli.
+    Find the Number Selective Features for the Dataset of Dot-Pattern Stimuli (as in Nasr et al. 2019, Kim et al., 2021).
 
     - Remark :
-        - Nars Dataset is composed of 3 Control Sets of Stimuli (StandardSet, ControlSet1, ControlSet2)
+        - The Dataset is composed of 3 Control Sets of Stimuli (StandardSet, ControlSet1, ControlSet2)
         which equates some distinct non-numerical properties of the Numerosity stimulus.
-        - A feature is considered to be Number Selective if it exhibited a significant change
-        for numerosity (P < alpha) but no significant change for the stimulus control
-        set or interaction between two factors.
+        - A feature is considered to be Number Selective if it exhibited a significant effect
+        of numerosity (P < alpha) but no significant effect of the stimulus control
+        sets or interaction between the two factors.
+        - A feature is considered to be Number Non-Selective if it exhibited a significant effect
+        of the stimulus control sets (P < alpha) but no significant effect of numerosity
+        sets or interaction between the two factors.
 
     - Parameters :
-        - features [np.array] : Representation of Nars stimuli dataset by the HCNN model. It should
+        - features [np.array] : Representation of the dot-pattern stimuli by the HCNN model. It should
         be of shape (n_Numerosity, n_Sets, n_samples, n_Features) i.e. Factor A is Numerosity & Factor B is Set.
         - alpha [float] : significance level to compare the p-values obtained from the F-test against.
 
