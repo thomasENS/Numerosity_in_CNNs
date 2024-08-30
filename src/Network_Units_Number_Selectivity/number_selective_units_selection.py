@@ -9,7 +9,7 @@ nNumerosity = len(Dot_Numerosity)
 fDir = os.path.join(dDir, "CNN_Representations", "Dot_Patterns_Dataset")
 sDir = os.path.join(dDir, "Decoding_Results", "Dot_Patterns_Dataset")
 
-# %% Find the Number Selective Units using two-way ANOVA as Nasr
+# %% Find the Number Selective Units using two-way ANOVA as Dots
 for Model in Models:
 
     Features = np.zeros((nNumerosity, 3, nImg, nFeatures))
@@ -81,21 +81,21 @@ for Model in Models:
     np.save(
         os.path.join(
             sDir,
-            f"{Model}_{Layer}_Nars_Number_Selective_Units_Uncorrected_Reproduction_nImgs-{nImg}.npy",
+            f"{Model}_{Layer}_Dots_Number_Selective_Units_Uncorrected_Reproduction_nImgs-{nImg}.npy",
         ),
         activated_units_idx[sigificant_units_idx],
     )
     np.save(
         os.path.join(
             sDir,
-            f"{Model}_{Layer}_Nars_Number_Non_Selective_Units_Uncorrected_Reproduction_nImgs-{nImg}.npy",
+            f"{Model}_{Layer}_Dots_Number_Non_Selective_Units_Uncorrected_Reproduction_nImgs-{nImg}.npy",
         ),
         activated_units_idx[non_sigificant_units_idx],
     )
     np.save(
         os.path.join(
             sDir,
-            f"{Model}_{Layer}_Nars_Significative_of_Sets_Units_Uncorrected_Reproduction_nImgs-{nImg}.npy",
+            f"{Model}_{Layer}_Dots_Significative_of_Sets_Units_Uncorrected_Reproduction_nImgs-{nImg}.npy",
         ),
         activated_units_idx[significative_of_sets_idx],
     )
@@ -119,7 +119,7 @@ for Model in Models:
     np.save(
         os.path.join(
             sDir,
-            f"{Model}_{Layer}_Number_Selective_Units_Idx_Nars_Stimuli_nImgs-{nImg}.npy",
+            f"{Model}_{Layer}_Number_Selective_Units_Idx_Dots_Stimuli_nImgs-{nImg}.npy",
         ),
         ordered_units_idx_by_pvalues,
     )
@@ -137,7 +137,7 @@ for Model in Models:
     np.save(
         os.path.join(
             sDir,
-            f"{Model}_{Layer}_Nars_Number_Selective_Units_Corrected_Reproduction_nImgs-{nImg}.npy",
+            f"{Model}_{Layer}_Dots_Number_Selective_Units_Corrected_Reproduction_nImgs-{nImg}.npy",
         ),
         kept_units_idx,
     )
@@ -147,7 +147,7 @@ for Model in Models:
     np.save(
         os.path.join(
             sDir,
-            f"{Model}_{Layer}_Nars_Number_Non_Selective_Units_Corrected_Reproduction_nImgs-{nImg}.npy",
+            f"{Model}_{Layer}_Dots_Number_Non_Selective_Units_Corrected_Reproduction_nImgs-{nImg}.npy",
         ),
         kept_units_idx,
     )

@@ -28,7 +28,7 @@ def inpolygon(xq, yq, xv, yv):
 
 def dot_stimulus_generation(number_sets, image_iter):
     """
-    Fct that generates stimuli similar to the ones from [K. Nasr et al., Sci Adv 5, 2019]
+    Fct that generates stimuli similar to the ones from [K. Dots et al., Sci Adv 5, 2019]
     """
 
     xax, yax = np.meshgrid(np.arange(ImgSize), np.arange(ImgSize))
@@ -233,7 +233,7 @@ def dot_stimulus_generation(number_sets, image_iter):
     return image_sets_standard, image_sets_control1, image_sets_control2
 
 
-# %% Generating images reproducing Nasr stimulus datasets
+# %% Generating images reproducing Dots stimulus datasets
 image_sets_standard, image_sets_control1, image_sets_control2 = (
     dot_stimulus_generation(Dot_Numerosity, nImg)
 )

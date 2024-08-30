@@ -135,13 +135,13 @@ Full_Sampling_Matrix = np.ones((nObjects, nBackgrounds)).astype(bool)
 
 MAE = lambda y_pred, y_true: np.mean(np.abs(y_true - y_pred))
 
-# %% Numerosity Coarse-Grained Generalization Decoding - Using Selected Features Number Units (follwing Nasr's analysis)
+# %% Numerosity Coarse-Grained Generalization Decoding - Using Selected Features Number Units (follwing Nasr's 2019 analysis)
 for Model in Models:
 
     Number_Selective_Features_Idx = np.load(
         os.path.join(
             sDir,
-            f"{Model}_{Layer}_Nars_Number_Selective_Units{Correction}_Reproduction_nImgs-{nImg}.npy",
+            f"{Model}_{Layer}_Dots_Number_Selective_Units{Correction}_Reproduction_nImgs-{nImg}.npy",
         )
     )
     Non_Selective_Population_Idx = np.array(
@@ -150,7 +150,7 @@ for Model in Models:
     Non_Selective_Features_Idx = np.load(
         os.path.join(
             sDir,
-            f"{Model}_{Layer}_Nars_Number_Non_Selective_Units{Correction}_Reproduction_nImgs-{nImg}.npy",
+            f"{Model}_{Layer}_Dots_Number_Non_Selective_Units{Correction}_Reproduction_nImgs-{nImg}.npy",
         )
     )
 

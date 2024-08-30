@@ -14,7 +14,7 @@ for Model in Models:
     Number_Selective_Units_Idx = np.load(
         os.path.join(
             sDir,
-            f"{Model}_{Layer}_Nars_Number_Selective_Units_Reproduction_nImgs-{nImg}.npy",
+            f"{Model}_{Layer}_Dots_Number_Selective_Units_Reproduction_nImgs-{nImg}.npy",
         )
     )
 
@@ -60,7 +60,7 @@ for Model in Models:
             ).copy()
             Prefered_Numerosity[Dot_Numerosity[prefered_numerosity_idx]].append(idx)
 
-    # Directly on the Nars Dataset Stimuli
+    # Directly on the Dots Dataset Stimuli
     n_Prefered_Numerosity = {N: len(Prefered_Numerosity[N]) for N in Dot_Numerosity}
     for N in Dot_Numerosity:
         for idx in Prefered_Numerosity[N]:
@@ -76,7 +76,7 @@ for Model in Models:
     np.save(
         os.path.join(
             sDir,
-            f"{Model}_{Layer}_Nars_Number_Selective_Tuning_Curves_nImgs-{nImg}_normalised_between_0_1.npy",
+            f"{Model}_{Layer}_Dots_Number_Selective_Tuning_Curves_nImgs-{nImg}_normalised_between_0_1.npy",
         ),
         tuned_curves,
     )

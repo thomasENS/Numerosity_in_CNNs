@@ -20,7 +20,7 @@ Chance_Level = 0.8502993454155389
 Tuning_Curves = np.load(
     os.path.join(
         nDir,
-        "AlexNet_Conv5_Nars_Number_Selective_Tuning_Curves_nImgs-900_normalised_between_0_1.npy",
+        "AlexNet_Conv5_Dots_Number_Selective_Tuning_Curves_nImgs-900_normalised_between_0_1.npy",
     )
 )
 Tuning_Curves /= np.max(Tuning_Curves, axis=0)
@@ -71,13 +71,13 @@ plt.subplots_adjust(hspace=0.1, wspace=0.04)
 
 plt.savefig(
     os.path.join(
-        saving_dir, "AlexNet_Conv5_Nars_Number_Selective_Tuning_Curves_nImgs-900.svg"
+        saving_dir, "AlexNet_Conv5_Dots_Number_Selective_Tuning_Curves_nImgs-900.svg"
     ),
     dpi=300,
     bbox_inches="tight",
 )
 
-# %% Fig 4C : Coarse-Grained Decoding on PhotoRealistic Stimuli based on Nasr Units + Population Code
+# %% Fig 4C : Coarse-Grained Decoding on PhotoRealistic Stimuli based on Dots Units + Population Code
 
 Markers = ["o", "s"]
 Height = 5
@@ -221,7 +221,7 @@ axs["B"].legend(
 plt.savefig(
     os.path.join(
         saving_dir,
-        "Coarse_Grained_Decoding_from_Nasr_Uncorrected_Units_nImgs-900_&_Population_Code_vs_Tuned_Units_Assessment.svg",
+        "Coarse_Grained_Decoding_from_Dots_Uncorrected_Units_nImgs-900_&_Population_Code_vs_Tuned_Units_Assessment.svg",
     ),
     dpi=300,
     bbox_inches="tight",
