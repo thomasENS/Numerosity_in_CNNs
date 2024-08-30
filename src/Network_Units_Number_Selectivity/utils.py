@@ -75,7 +75,7 @@ def find_number_selective_features(features, alpha=0.01):
         sets or interaction between the two factors.
         - A feature is considered to be Number Non-Selective if it exhibited a significant effect
         of the stimulus control sets (P < alpha) but no significant effect of numerosity
-        sets or interaction between the two factors.
+        or interaction between the two factors.
 
     - Parameters :
         - features [np.array] : Representation of the dot-pattern stimuli by the HCNN model. It should
