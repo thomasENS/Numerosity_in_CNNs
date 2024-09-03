@@ -146,7 +146,7 @@ axs["A"].set_xticks(
     [0, 1, x[0] + 2], ["AlexNet", "Random\nAlexNet", "Baseline"], fontsize=15
 )
 
-## Population Code vs. Few Tuned Units ?
+## Decoding performance for different proportions of randomly selected units (left panel)
 for i in range(nModels):
 
     results_path = os.path.join(
