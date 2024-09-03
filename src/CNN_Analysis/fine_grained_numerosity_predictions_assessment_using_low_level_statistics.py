@@ -86,7 +86,7 @@ def _load_features(
     UseSegMask,
 ):
     """
-    Load the features row associated with the low-level statistic of interest for a given stimuli
+    Load the feature row associated with the low-level statistic of interest for a given stimulus
     """
 
     x = []
@@ -305,7 +305,7 @@ def _standardize(X):
     return X
 
 
-# %% Assess the explained variance accounted by linear mapping of the low-level statistics on their associated fine-grained predictions
+# %% Assess the explained variance accounted for by linear regression of the low-level statistics on their associated fine-grained predictions
 
 UseSegMask = ""  # Just Remove (or replace '_Mask' by '') this Arg for using the photorealistic Stimuli (rather than their binary Masks)
 
@@ -379,7 +379,7 @@ for PS_range in PS_Ranges:
                         predictions_path + "_Predictions_Across_Objects.npy"
                     )  # shape : (20, 20, 2560) i.e. pred[i, j, :1280] correspond to the predictions of the 2nd version of the stimuli (since X_test on 3-v_idx !)
 
-                    ## Loading & Fitting the Predictions (y_test_pred) for each Training (X_train may use different confounders) independantly.
+                    ## Loading & Fitting the Predictions (y_test_pred) for each Training (X_train may use different confounders) independently.
                     for i in range(nObjects):
 
                         y_test_pred = predictions[
@@ -389,10 +389,10 @@ for PS_range in PS_Ranges:
                         y_test_pred -= y_test_pred.mean()
                         y_test_pred = y_test_pred.reshape(-1, 1)
 
-                        ## Fitting the BRR between the Predictions (y_test_pred) and the Statistics of the associated Stimuli (X_test).
+                        ## Fitting the regression between the Predictions (y_test_pred) and the Statistics of the associated Stimuli (X_test).
                         clf.fit(X_test, y_test_pred)
 
-                        ## Estimating the Explained Variance of each Low-Level Statistics accounting for the mapping from X_test to y_test_pred
+                        ## Estimating the Explained Variance for all Low-Level Statistics accounting for the mapping from X_test to y_test_pred
                         Explained_Variance[i] = clf.score(X_test, y_test_pred)
 
                     np.save(save_path, Explained_Variance)
@@ -463,7 +463,7 @@ for PS_range in PS_Ranges:
                             predictions_path + "_Predictions_Across_Backgrounds.npy"
                         )  # shape : (20, 20, 2560) i.e. pred[i, j, :1280] correspond to the predictions of the 2nd version of the stimuli (since X_test on 3-v_idx !)
 
-                        ## Loading & Fitting the Predictions (y_test_pred) for each Training (X_train may use different confounders) independantly.
+                        ## Loading & Fitting the Predictions (y_test_pred) for each Training (X_train may use different confounders) independently.
                         for i in range(nBackgrounds):
 
                             y_test_pred = predictions[
@@ -473,10 +473,10 @@ for PS_range in PS_Ranges:
                             y_test_pred -= y_test_pred.mean()
                             y_test_pred = y_test_pred.reshape(-1, 1)
 
-                            ## Fitting the BRR between the Predictions (y_test_pred) and the Statistics of the associated Stimuli (X_test).
+                            ## Fitting the regression between the Predictions (y_test_pred) and the Statistics of the associated Stimuli (X_test).
                             clf.fit(X_test, y_test_pred)
 
-                            ## Estimating the Explained Variance of each Low-Level Statistics accounting for the mapping from X_test to y_test_pred
+                            ## Estimating the Explained Variance for all Low-Level Statistics accounting for the mapping from X_test to y_test_pred
                             Explained_Variance[i] = clf.score(X_test, y_test_pred)
 
                         np.save(save_path, Explained_Variance)
