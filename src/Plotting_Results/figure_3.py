@@ -731,20 +731,11 @@ for Case in Cases:
         t_mean, t_std = np.mean(tMean), np.mean(tStd)
         r_mean, r_std = np.mean(rMean), np.mean(rStd)
 
-        ## Calculate the T-test for the means of two independent samples of scores.
-        ## With equal_var=False performs  Welch’s t-test, which does not assume equal
-        ## population variance.  two-sample Kolmogorov-Smirnov test the underlying
-        ##  distributions F(x) and G(x) are different or not.
-        # stat_level, pvalue = st.ttest_ind(tMean, rMean, equal_var=False)
-        # print(Case, PS_range, 'Weich', stat_level, pvalue)
-        # stat_level, pvalue = st.ttest_rel(tMean, rMean)
-        # print(Case, PS_range, 'Paired', stat_level, pvalue)
-        stat_level, pvalue = st.ks_2samp(tMean, rMean)
-        print(Case, PS_range, "Kolmogorov-Smirnov", stat_level, pvalue)
+        # statistic testing using paired version of Wilcoxon signed rank test
         stat_level, pvalue = st.wilcoxon(np.array(tMean) - np.array(rMean))
         print(Case, PS_range, "Paired Wilcoxon", stat_level, pvalue)
 
-        ## Plot Explained Variance Per Models
+        ## Plot Explained Variance Per Model
         axs[k, 0].plot([-4 * width, nModels - 1 + 4 * width], [0, 0], "k--")
         axs[k, 0].set_ylim([-0.1, 1])
 
@@ -821,7 +812,7 @@ for Case in Cases:
         columnspacing=0.7,
     )
 
-    ## Manual t-test significance levels
+    ## Manual significance levels
     h_level, lw = 0.55, 1
     axs[0, 1].hlines(y=h_level, xmin=OffSet[0], xmax=OffSet[-1], color="k", lw=lw)
     axs[0, 1].vlines(
