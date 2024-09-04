@@ -161,7 +161,7 @@ for UseSegMask in UseSegMasks:
                         alpha=0.8,
                     )
 
-    ## Manual t-test significance levels
+    ## Manual significance levels of the wilcoxon test
     h_level = 0.42 if idx_mask == 0 else 0.35
     axs.hlines(y=h_level, xmin=1 + idx_mask, xmax=2 + idx_mask, color="k", lw=1)
     axs.vlines(
