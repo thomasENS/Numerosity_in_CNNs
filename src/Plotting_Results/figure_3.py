@@ -169,21 +169,21 @@ for tMode in trainingMode:
                 xerr = np.log(
                     (
                         MAE["estimation"][Mode][Model][Case][ix]
-                        + STD["estimation"][Mode][Model][Case][ix] / 4
+                        + STD["estimation"][Mode][Model][Case][ix] / 2
                     )
                     / (
                         MAE["estimation"][Mode][Model][Case][ix]
-                        - STD["estimation"][Mode][Model][Case][ix] / 4
+                        - STD["estimation"][Mode][Model][Case][ix] / 2
                     )
                 )
                 yerr = np.log(
                     (
                         MAE["subitizing"][Mode][Model][Case][iy]
-                        + STD["subitizing"][Mode][Model][Case][iy] / 4
+                        + STD["subitizing"][Mode][Model][Case][iy] / 2
                     )
                     / (
                         MAE["subitizing"][Mode][Model][Case][iy]
-                        - STD["subitizing"][Mode][Model][Case][iy] / 4
+                        - STD["subitizing"][Mode][Model][Case][iy] / 2
                     )
                 )
                 if Case == "iid":
@@ -470,21 +470,21 @@ for Model in Models:
             xerr = np.log(
                 (
                     MAE["estimation"][Mode]["_".join(Model)][Case]
-                    + STD["estimation"][Mode]["_".join(Model)][Case] / 4
+                    + STD["estimation"][Mode]["_".join(Model)][Case] / 2
                 )
                 / (
                     MAE["estimation"][Mode]["_".join(Model)][Case]
-                    - STD["estimation"][Mode]["_".join(Model)][Case] / 4
+                    - STD["estimation"][Mode]["_".join(Model)][Case] / 2
                 )
             )
             yerr = np.log(
                 (
                     MAE["subitizing"][Mode]["_".join(Model)][Case]
-                    + STD["subitizing"][Mode]["_".join(Model)][Case] / 4
+                    + STD["subitizing"][Mode]["_".join(Model)][Case] / 2
                 )
                 / (
                     MAE["subitizing"][Mode]["_".join(Model)][Case]
-                    - STD["subitizing"][Mode]["_".join(Model)][Case] / 4
+                    - STD["subitizing"][Mode]["_".join(Model)][Case] / 2
                 )
             )
             if Case == "iid":
@@ -505,8 +505,8 @@ for Model in Models:
                 axes[0].errorbar(
                     x=x,
                     y=y,
-                    xerr=xerr / 1.2,
-                    yerr=yerr / 1.2,
+                    xerr=xerr,
+                    yerr=yerr,
                     markeredgewidth=0.8,
                     ms=markersize,
                     marker=Markers["_".join(Model)],
@@ -572,21 +572,21 @@ for Model in All_Stats_Models:
             xerr = np.log(
                 (
                     MAE["estimation"][Mode]["_".join(Model)][Case]
-                    + STD["estimation"][Mode]["_".join(Model)][Case] / 4
+                    + STD["estimation"][Mode]["_".join(Model)][Case] / 2
                 )
                 / (
                     MAE["estimation"][Mode]["_".join(Model)][Case]
-                    - STD["estimation"][Mode]["_".join(Model)][Case] / 4
+                    - STD["estimation"][Mode]["_".join(Model)][Case] / 2
                 )
             )
             yerr = np.log(
                 (
                     MAE["subitizing"][Mode]["_".join(Model)][Case]
-                    + STD["subitizing"][Mode]["_".join(Model)][Case] / 4
+                    + STD["subitizing"][Mode]["_".join(Model)][Case] / 2
                 )
                 / (
                     MAE["subitizing"][Mode]["_".join(Model)][Case]
-                    - STD["subitizing"][Mode]["_".join(Model)][Case] / 4
+                    - STD["subitizing"][Mode]["_".join(Model)][Case] / 2
                 )
             )
             if Case == "iid":
@@ -607,8 +607,8 @@ for Model in All_Stats_Models:
                 axes[1].errorbar(
                     x=x,
                     y=y,
-                    xerr=xerr / 2,
-                    yerr=yerr / 2,
+                    xerr=xerr,
+                    yerr=yerr,
                     markeredgewidth=0.8,
                     ms=11,
                     marker=Markers["_".join(Model)],

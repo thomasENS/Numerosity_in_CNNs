@@ -18,7 +18,7 @@ from args import (
 )
 from utils import simple_beeswarm2
 
-# %% Fig 5B - Fine Generalization Comparison between Photorealistic & SegMask (2-way ANOVA RM)
+# %% Fig 5B - Fine Generalization Comparison between Photorealistic & Simplified Stimuli (2-way ANOVA RM)
 UseSegMasks = ["", "_Mask"]
 
 width_bp = 0.35  # width boxplot
@@ -108,12 +108,6 @@ for UseSegMask in UseSegMasks:
         rMAE.append([MAE[Model][Layer] for Layer in Layers for Model in Models[3:]])
 
     tMAE, rMAE = np.concatenate(tMAE), np.concatenate(rMAE)
-    # stat_level, pvalue = st.ttest_rel(tMAE, rMAE) # paired t-test
-    # print('paired t-test', stat_level, pvalue)
-    # stat_level, pvalue = st.ttest_ind(tMAE, rMAE, equal_var=False)
-    # print('2 samples t-test', stat_level, pvalue)
-    # stat_level, pvalue = st.ranksums(tMAE, rMAE)
-    # print('wilcoxon rank-sum test', stat_level, pvalue)
     stat_level, pvalue = st.wilcoxon(tMAE - rMAE)
     print("Paired Wilcoxon", stat_level, pvalue)
 
@@ -176,7 +170,6 @@ for UseSegMask in UseSegMasks:
     axs.vlines(
         x=2 + idx_mask, ymin=h_level - 0.01, ymax=h_level + 0.0007, color="k", lw=1
     )
-    # axs.annotate('n.s.', xy=(1.355, h_level+.01), fontsize=13)
     if idx_mask == 0:
         axs.annotate(r"$\star$", xy=(1.35 + idx_mask, h_level + 0.005), fontsize=19)
         axs.annotate(r"$\star$", xy=(1.45 + idx_mask, h_level + 0.005), fontsize=19)
@@ -194,7 +187,7 @@ axs.boxplot(
     showmeans=True,
 )
 
-## Manual Rectangle to depict Photorealistic vs. SegMask
+## Manual Rectangle to depict Photorealistic vs. Simplified Stimuli
 rect_width, rect_height, rect_y0 = 1.9, 0.35, 0.11
 rectPhotoRealistic = Rectangle(
     xy=(0.55, rect_y0),
@@ -217,7 +210,7 @@ rectSegMask = Rectangle(
 )
 axs.add_artist(rectSegMask)
 
-## Manual t-test significance levels
+## Manual significance levels of the wilcoxon test
 h_level, xmin, xmax = 0.48, 1.5, 3.5
 axs.hlines(y=h_level, xmin=xmin, xmax=xmax, color="k", lw=1)
 axs.vlines(x=xmin, ymin=h_level - 0.01, ymax=h_level + 0.0007, color="k", lw=1)

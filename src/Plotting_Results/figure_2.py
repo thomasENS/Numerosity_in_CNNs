@@ -106,12 +106,12 @@ for case in Cases:
                 MAE["subitizing"][Model][i]
             )
             xerr = np.log(
-                (MAE["estimation"][Model][i] + STD["estimation"][Model][i] / 4)
-                / (MAE["estimation"][Model][i] - STD["estimation"][Model][i] / 4)
+                (MAE["estimation"][Model][i] + STD["estimation"][Model][i] / 2)
+                / (MAE["estimation"][Model][i] - STD["estimation"][Model][i] / 2)
             )
             yerr = np.log(
-                (MAE["subitizing"][Model][i] + STD["subitizing"][Model][i] / 4)
-                / (MAE["subitizing"][Model][i] - STD["subitizing"][Model][i] / 4)
+                (MAE["subitizing"][Model][i] + STD["subitizing"][Model][i] / 2)
+                / (MAE["subitizing"][Model][i] - STD["subitizing"][Model][i] / 2)
             )
             plt.errorbar(
                 x=x,
@@ -239,12 +239,12 @@ for case in Cases:
                 MAE["subitizing"][Model][i]
             )
             xerr = np.log(
-                (MAE["estimation"][Model][i] + STD["estimation"][Model][i] / 4)
-                / (MAE["estimation"][Model][i] - STD["estimation"][Model][i] / 4)
+                (MAE["estimation"][Model][i] + STD["estimation"][Model][i] / 2)
+                / (MAE["estimation"][Model][i] - STD["estimation"][Model][i] / 2)
             )
             yerr = np.log(
-                (MAE["subitizing"][Model][i] + STD["subitizing"][Model][i] / 4)
-                / (MAE["subitizing"][Model][i] - STD["subitizing"][Model][i] / 4)
+                (MAE["subitizing"][Model][i] + STD["subitizing"][Model][i] / 2)
+                / (MAE["subitizing"][Model][i] - STD["subitizing"][Model][i] / 2)
             )
             plt.errorbar(
                 x=x,
