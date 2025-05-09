@@ -12,7 +12,7 @@ PS_Ranges = ["subitizing", "estimation"]
 Layers = ["Conv1", "Conv2", "Conv3", "Conv4", "Conv5"]
 UseSegMask = ""  # Corresponds to photorealistic stimuli
 
-# %% Summary DeWind Analysis
+# %% Summary Quantity Bias Analysis
 rModels = ["Random_AlexNet", "Random_ResNet50", "Random_VGG16"]
 tModels = ["AlexNet", "ResNet50", "VGG16"]
 Models = tModels + rModels
@@ -118,7 +118,7 @@ for PS_range in PS_Ranges:
 
                 results_path = os.path.join(
                     sDir,
-                    f"FGG_Objects_{Model}_{Layer}_DeWind_Biases_Assessement_Train_Test_Same_Object_Beta_Weights{UseSegMask}.npy",
+                    f"FGG_Objects_{Model}_{Layer}_Quantity_Biases_Assessement_Train_Test_Same_Object_Beta_Weights{UseSegMask}.npy",
                 )
                 Beta_Weights_AVG = np.load(results_path).mean(axis=0)  # (N, SzA, Sp)
                 Beta_Weights_STD = np.load(results_path).std(axis=0)
@@ -189,7 +189,7 @@ for PS_range in PS_Ranges:
     plt.savefig(
         os.path.join(
             saving_dir,
-            f"Summary_DeWind_Analysis{UseSegMask}_{PS_range[0].upper() + PS_range[1:]}_Range.svg",
+            f"Summary_Quantity_Analysis{UseSegMask}_{PS_range[0].upper() + PS_range[1:]}_Range.svg",
         ),
         dpi=600,
         bbox_inches="tight",
