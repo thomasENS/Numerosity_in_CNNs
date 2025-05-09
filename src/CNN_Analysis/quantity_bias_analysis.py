@@ -129,7 +129,7 @@ for PS_range in PS_Ranges:
         for Layer in Layers:
 
             results_path = os.path.join(
-                sDir, f"FGG_Objects_{Model}_{Layer}_DeWind_Biases_Assessement"
+                sDir, f"FGG_Objects_{Model}_{Layer}_Quantity_Biases_Assessement"
             )
             predictions_path = os.path.join(
                 sDir,
@@ -193,7 +193,7 @@ for PS_range in PS_Ranges:
 
             results_path = os.path.join(
                 sDir,
-                f"FGG_Objects_{Model}_{Layer}_DeWind_Biases_Assessement_Train_Test_Same_Object",
+                f"FGG_Objects_{Model}_{Layer}_Quantity_Biases_Assessement_Train_Test_Same_Object",
             )
             predictions_path = os.path.join(
                 sDir,
@@ -351,7 +351,7 @@ alpha_M = np.mean(M_alphas) + np.mean(D_alphas_Threshold)
 # alpha_m = 0.2920639275535317
 # alpha_M = 2.8174341613441065
 
-# %% Plot DeWind's Angles
+# %% Plot Quantity's Angles
 ## For thresold = .05
 alpha_m = 0.2920639275535317
 alpha_M = 2.8174341613441065
@@ -381,7 +381,7 @@ for PS_range in PS_Ranges:
 
             results_path = os.path.join(
                 sDir,
-                f"FGG_Objects_{Model}_{Layer}_DeWind_Biases_Assessement{Case}_Beta_Weights{UseSegMask}.npy",
+                f"FGG_Objects_{Model}_{Layer}_Quantity_Biases_Assessement{Case}_Beta_Weights{UseSegMask}.npy",
             )
             Beta_Weights = np.load(results_path)
 
@@ -426,7 +426,7 @@ for PS_range in PS_Ranges:
             plt.savefig(
                 os.path.join(
                     iDir,
-                    f"{Model}_{Layer}_DeWind_Biases_Assessement{Case}_Beta_Weights{UseSegMask}_{PS_range[0].upper() + PS_range[1:]}_Range.svg",
+                    f"{Model}_{Layer}_Quantity_Biases_Assessement{Case}_Beta_Weights{UseSegMask}_{PS_range[0].upper() + PS_range[1:]}_Range.svg",
                 ),
                 dpi=300,
                 bbox_inches="tight",
